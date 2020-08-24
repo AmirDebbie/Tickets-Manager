@@ -13,9 +13,9 @@ app.get('/api/tickets', async (req, res) => {
   if (req.query.searchText) {
     const filteredList = JSON.parse(data)
       .filter((item) => item.title.toLowerCase().indexOf(req.query.searchText.toLowerCase()) !== -1);
-    res.send(JSON.stringify(filteredList));
+    res.send(filteredList);
   } else {
-    res.send(data);
+    res.send(JSON.parse(data));
   }
 });
 
@@ -31,7 +31,7 @@ app.post('/api/tickets/:ticketId/done', async (req, res) => {
 
   fs.writeFile(jsonFile, JSON.stringify(parsedData));
 
-  res.send('done');
+  res.send({ updated: true });
 });
 
 // gets an id in the params and gives/changes the done property of that item to false.
@@ -45,7 +45,7 @@ app.post('/api/tickets/:ticketId/undone', async (req, res) => {
   });
   fs.writeFile(jsonFile, JSON.stringify(parsedData));
 
-  res.send('undone');
+  res.send({ updated: true });
 });
 
 module.exports = app;
