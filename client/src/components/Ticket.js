@@ -2,29 +2,34 @@ import React, { useState, useEffect } from 'react';
 
 function Ticket(props) {
 
-  const [show, setShow] = useState(true);
+  const [showTicket, setShowTicket] = useState(true);
+  const [showHideButton, setShowHideButton] = useState(false);
 
   const handleHide = () => {
-    setShow(false); 
+    setShowTicket(false); 
     props.raiseCounter()
+  }
+
+  const hanleShowHideButton = () => {
+    setShowHideButton(!showHideButton);
   }
 
   useEffect(() => {
     if(props.hiddenCounter === 0) {
-      setShow(true);
+      setShowTicket(true);
     }
   }, [props.hiddenCounter])
 
   const { item } = props;
   return (
     <>
-    {show &&
-      <div className='ticket'>
-        <button className='hideTicketButton' onClick={handleHide}>hide</button>
-        <h2>{item.title}</h2>
+    {showTicket &&
+      <div onMouseOver={hanleShowHideButton} onMouseOut={hanleShowHideButton} className='ticket'>
+        <button className={showHideButton ? 'hideTicketButton' : 'hide'} onClick={handleHide}>hide</button>
+        <h3>{item.title}</h3>
         <p>{item.content}</p>
         <div>
-          <p>By {item.userEmail} | {new Date(item.creationTime).toUTCString()}</p>
+          <p className='emailAndDate'>By {item.userEmail} | {new Date(item.creationTime).toUTCString()}</p>
           {item.labels &&
             item.labels.map((label, i) => <span key={i} className='label'>{label}</span>)
           }

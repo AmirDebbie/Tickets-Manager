@@ -1,4 +1,59 @@
+main {
+    background-color: rgb(241, 252, 255);
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
 .ticket {
+    color: rgb(80, 112, 121);
     margin: 30px auto;
     width: 80%;
+    box-shadow: 5px 10px 18px #9e9797;
+    padding: 30px;
+    padding-top:14px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.hideTicketButton {
+    border: none;
+    background-color: inherit;
+    margin-left: 95%;
+    color: rgb(138, 138, 138);
+    font-size: 16px;
+    cursor: pointer;
+    transition: 100ms;
+}
+
+.hide {
+    border: none;
+    background-color: inherit;
+    margin-left: 96%;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 100ms;
+}
+
+h3 {
+    margin: 0;
+}
+
+.emailAndDate {
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.label {
+    font-size: 14px;
+    color: rgb(73, 156, 235);
+    border: 2px solid rgb(73, 156, 235);
+    border-radius: 3px;
+    margin: 7px;
+    padding: 6px;
+    transition: 200ms;
+    box-shadow: 3px 3px 10px #c0b9b9;
+}
+
+.label:hover {
+    transform: scale(1.1);
 }
