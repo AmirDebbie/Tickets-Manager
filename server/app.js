@@ -7,15 +7,45 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// returns the json array from the data file. if query param "searchText" exits, it returns a filtered array of the items titles.
 app.get('/api/tickets', async (req, res) => {
-  const winnersLog = await fs.readFile(jsonFile, { encoding: 'utf-8' });
+  const data = await fs.readFile(jsonFile, { encoding: 'utf-8' });
   if (req.query.searchText) {
-    const filteredList = JSON.parse(winnersLog)
+    const filteredList = JSON.parse(data)
       .filter((item) => item.title.toLowerCase().indexOf(req.query.searchText.toLowerCase()) !== -1);
     res.send(JSON.stringify(filteredList));
   } else {
-    res.send(winnersLog);
+    res.send(data);
   }
+});
+
+// gets an id in the params and gives/changes the done property of that item to true.
+app.post('/api/tickets/:ticketId/done', async (req, res) => {
+  const data = await fs.readFile(jsonFile, { encoding: 'utf-8' });
+  const parsedData = JSON.parse(data);
+  parsedData.forEach((item, i) => {
+    if (item.id === req.params.ticketId) {
+      parsedData[i].done = true;
+    }
+  });
+
+  fs.writeFile(jsonFile, JSON.stringify(parsedData));
+
+  res.send('done');
+});
+
+// gets an id in the params and gives/changes the done property of that item to false.
+app.post('/api/tickets/:ticketId/undone', async (req, res) => {
+  const data = await fs.readFile(jsonFile, { encoding: 'utf-8' });
+  const parsedData = JSON.parse(data);
+  parsedData.forEach((item, i) => {
+    if (item.id === req.params.ticketId) {
+      parsedData[i].done = false;
+    }
+  });
+  fs.writeFile(jsonFile, JSON.stringify(parsedData));
+
+  res.send('undone');
 });
 
 module.exports = app;
