@@ -10,7 +10,7 @@ function Ticket(props) {
     props.raiseCounter()
   }
 
-  const hanleShowHideButton = () => {
+  const handleShowHideButton = () => {
     setShowHideButton(!showHideButton);
   }
 
@@ -24,7 +24,7 @@ function Ticket(props) {
   return (
     <>
     {showTicket &&
-      <div onMouseOver={hanleShowHideButton} onMouseOut={hanleShowHideButton} className='ticket'>
+      <div onMouseOver={handleShowHideButton} onMouseOut={handleShowHideButton} className='ticket'>
         <button className={showHideButton ? 'hideTicketButton' : 'hide'} onClick={handleHide}>hide</button>
         <h3>{item.title}</h3>
         <p>{item.content}</p>

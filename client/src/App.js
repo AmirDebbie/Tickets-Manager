@@ -31,15 +31,17 @@ function App() {
 
   return (
     <main>
-      <TextField variant="outlined" label='Search ticket by title' id='searchInput' onChange={handleInputChange} />
-      <span>showing {list.length} results. </span>
-      {
-        hiddenCounter > 0 &&
-        <span>
-          <span className='hideTicketsCounter'>{hiddenCounter}</span> hidden tickets. <button onClick={restoreHidden} id='restoreHideTickets'>restore</button>
-        </span>
-      }
-      
+      <h1 className='title'>Ticket Manager</h1>
+      <div className='center'>
+        <TextField className='textArea' variant="outlined" label='Search ticket by title' id='searchInput' onChange={handleInputChange} /> <br />
+        <span>showing {list.length} results. </span>
+        {
+          hiddenCounter > 0 &&
+          <span>
+            <span className='hideTicketsCounter'>{hiddenCounter}</span> hidden tickets. <button onClick={restoreHidden} id='restoreHideTickets'>restore</button>
+          </span>
+        }
+      </div>
       {list.map((item, i) => 
       <Ticket 
         raiseCounter={raiseCounter} 

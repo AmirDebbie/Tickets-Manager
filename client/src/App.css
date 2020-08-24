@@ -18,10 +18,15 @@ main {
     border: none;
     background-color: inherit;
     margin-left: 95%;
-    color: rgb(138, 138, 138);
+    color: rgb(73, 156, 235);
     font-size: 16px;
     cursor: pointer;
     transition: 100ms;
+    border-radius: 4px;
+    padding:5px;
+}
+.hideTicketButton:hover {
+    background-color: rgb(73, 156, 235, 0.1);
 }
 
 .hide {
@@ -32,9 +37,11 @@ main {
     font-size: 16px;
     cursor: pointer;
     transition: 100ms;
+    padding:5px;
+
 }
 
-h3 {
+h3, h1 {
     margin: 0;
 }
 
@@ -46,8 +53,9 @@ h3 {
 .label {
     font-size: 14px;
     color: rgb(73, 156, 235);
+    background-color: rgb(73, 156, 235, 0.2); ;
     border: 2px solid rgb(73, 156, 235);
-    border-radius: 3px;
+    border-radius: 5px;
     margin: 7px;
     padding: 6px;
     transition: 200ms;
@@ -56,4 +64,20 @@ h3 {
 
 .label:hover {
     transform: scale(1.1);
+}
+
+.title {
+    text-align: center;
+    padding: 20px;
+    color: rgb(43, 130, 211);
+    font-size: 40px;
+}
+
+.center {
+    text-align: center;
+}
+
+.textArea {
+    background-color:white ;
+    border-width: 2px;
 }
