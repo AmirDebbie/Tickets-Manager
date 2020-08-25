@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReadMore from './ReadMore';
 
 function Ticket(props) {
 
@@ -25,7 +26,7 @@ function Ticket(props) {
       <div onMouseOver={handleShowHideButton} onMouseOut={handleShowHideButton} className={showTicket}>
         <button className={showHideButton ? 'hideTicketButton' : 'hide'} onClick={handleHide}>hide</button>
         <h3>{item.title}</h3>
-        <p>{item.content}</p>
+        <ReadMore content={item.content} maxChar='400' />
         <div>
           <p className='emailAndDate'>By {item.userEmail} | {new Date(item.creationTime).toUTCString()}</p>
           {item.labels &&

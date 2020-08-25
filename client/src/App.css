@@ -21,7 +21,7 @@ main {
     color: rgb(73, 156, 235);
     font-size: 16px;
     cursor: pointer;
-    transition: 100ms;
+    transition: 200ms;
     border-radius: 4px;
     padding:5px;
 }
@@ -36,7 +36,6 @@ main {
     color: white;
     font-size: 16px;
     cursor: pointer;
-    transition: 100ms;
     padding:5px;
 
 }
@@ -84,4 +83,23 @@ h3, h1 {
 
 .hideTicket {
     display: none;
+}
+
+.moreLess {
+    border: none;
+    background-color: inherit;
+    color: rgb(73, 156, 235);
+    font-size: 16px;
+    cursor: pointer;
+    transition: 100ms;
+    border-radius: 4px;
+    padding:5px;
+}
+
+.moreLess:focus {
+    outline: none;
+}
+
+.moreLess:hover {
+    background-color: rgb(73, 156, 235, 0.1);
 }
