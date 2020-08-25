@@ -81,3 +81,7 @@ h3, h1 {
     background-color:white ;
     border-width: 2px;
 }
+
+.hideTicket {
+    display: none;
+}

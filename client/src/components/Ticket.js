@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 function Ticket(props) {
 
-  const [showTicket, setShowTicket] = useState(true);
+  const [showTicket, setShowTicket] = useState('ticket');
   const [showHideButton, setShowHideButton] = useState(false);
 
-  const handleHide = () => {
-    setShowTicket(false); 
-    props.raiseCounter()
+  const handleHide = (e) => {
+    setShowTicket('hideTicket'); 
+    props.raiseCounter();
   }
 
   const handleShowHideButton = () => {
@@ -16,15 +16,13 @@ function Ticket(props) {
 
   useEffect(() => {
     if(props.hiddenCounter === 0) {
-      setShowTicket(true);
+      setShowTicket('ticket');
     }
   }, [props.hiddenCounter])
 
   const { item } = props;
   return (
-    <>
-    {showTicket &&
-      <div onMouseOver={handleShowHideButton} onMouseOut={handleShowHideButton} className='ticket'>
+      <div onMouseOver={handleShowHideButton} onMouseOut={handleShowHideButton} className={showTicket}>
         <button className={showHideButton ? 'hideTicketButton' : 'hide'} onClick={handleHide}>hide</button>
         <h3>{item.title}</h3>
         <p>{item.content}</p>
@@ -34,8 +32,7 @@ function Ticket(props) {
             item.labels.map((label, i) => <span key={i} className='label'>{label}</span>)
           }
         </div>
-      </div>}
-    </>
+      </div>
   )
 }
 

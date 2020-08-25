@@ -38,7 +38,7 @@ function App() {
         {
           hiddenCounter > 0 &&
           <span>
-            <span className='hideTicketsCounter'>{hiddenCounter}</span> hidden tickets. <button onClick={restoreHidden} id='restoreHideTickets'>restore</button>
+            <span id='hideTicketsCounter'>{hiddenCounter}</span> hidden tickets. <button onClick={restoreHidden} id='restoreHideTickets'>restore</button>
           </span>
         }
       </div>
