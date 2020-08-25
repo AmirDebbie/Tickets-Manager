@@ -3,6 +3,7 @@ import axios from 'axios';
 import Ticket from './components/Ticket';
 import TextField from '@material-ui/core/TextField'
 import './App.css';
+import MyModal from './components/MyModal'
 
 function App() {
   const [list, setList] = useState([]);
@@ -42,7 +43,8 @@ function App() {
           label='Search ticket by title' 
           id='searchInput' 
           onChange={handleInputChange} 
-        /> <br />
+        /> 
+        <br />
         <span>showing {list.length} results </span>
         {
           hiddenCounter > 0 &&
@@ -50,6 +52,9 @@ function App() {
             {'('}<span id='hideTicketsCounter'>{hiddenCounter}</span> hidden tickets - <button className="moreLess" onClick={restoreHidden} id='restoreHideTickets'>restore</button>{')'}
           </span>
         }
+        <br />
+        <MyModal fetch={fetch} />
+
       </div>
       {list.map((item, i) => 
       <Ticket 

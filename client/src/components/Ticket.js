@@ -49,7 +49,7 @@ function Ticket(props) {
             </Tooltip>
             <h3>{item.title}</h3>
             <div>
-              <p className='emailAndDate'>By {item.userEmail} | {new Date(item.creationTime).toUTCString()}</p>
+              <p className='emailAndDate'>By {item.userEmail} | {new Date(item.creationTime).toString()}</p>
               {item.labels &&
                 item.labels.map((label, i) => <span key={i} className='label'>{label}</span>)
               }
@@ -64,7 +64,7 @@ function Ticket(props) {
           <h3>{item.title}</h3>
           <ReadMore content={item.content} maxChar='400' />
           <div>
-            <p className='emailAndDate'>By {item.userEmail} | {new Date(item.creationTime).toUTCString()}</p>
+            <p className='emailAndDate'>By {item.userEmail} | {new Date(item.creationTime).toString()}</p>
             {item.labels &&
               item.labels.map((label, i) => <span key={i} className='label'>{label}</span>)
             }

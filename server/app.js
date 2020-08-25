@@ -1,4 +1,5 @@
 const express = require('express');
+const { writeFile } = require('fs');
 const fs = require('fs').promises;
 
 const jsonFile = './data.json';
@@ -43,9 +44,17 @@ app.post('/api/tickets/:ticketId/undone', async (req, res) => {
       parsedData[i].done = false;
     }
   });
-  fs.writeFile(jsonFile, JSON.stringify(parsedData));
+  fs.writeFile(jsonFile, JSON.stringify(parsedData, null, 2));
 
   res.send({ updated: true });
+});
+
+app.post('/api/tickets/', async (req, res) => {
+  const data = await fs.readFile(jsonFile, { encoding: 'utf-8' });
+  const parsedData = JSON.parse(data);
+  parsedData.push(req.body);
+  await fs.writeFile(jsonFile, JSON.stringify(parsedData, null, 2));
+  res.send(parsedData[parsedData.length - 1]);
 });
 
 module.exports = app;
