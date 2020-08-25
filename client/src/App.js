@@ -35,7 +35,7 @@ function App() {
       <h1 className='title'>Ticket Manager</h1>
       <div className='center'>
         <TextField 
-          style={{margin: 10}} 
+          style={{margin: 10, boxShadow: "5px 5px 18px #9e9797"}} 
           size='small' 
           className='textArea' 
           variant="outlined" 
@@ -57,6 +57,7 @@ function App() {
         raiseCounter={raiseCounter} 
         key={i} 
         item={item} 
+        doneButtonId={`doneButton-${i}`}
         hiddenCounter={hiddenCounter}
       />)}
     </main>

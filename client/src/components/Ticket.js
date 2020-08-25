@@ -45,7 +45,7 @@ function Ticket(props) {
           <>
             <button className={showHideButton ? 'hideTicketButton' : 'hide'} onClick={handleHide}>hide</button>
             <Tooltip placement="top" title='Done'>
-              <button className='doneButton' onClick={handleDone}><img className='icons' src={require('../Icons/vIcon.png')} /></button>
+              <button id={props.doneButtonId} className='doneButton' onClick={handleDone}><img className='icons' src={require('../Icons/vIcon.png')} /></button>
             </Tooltip>
             <h3>{item.title}</h3>
             <div>
@@ -59,7 +59,7 @@ function Ticket(props) {
         <>
           <button className={showHideButton ? 'hideTicketButton' : 'hide'} onClick={handleHide}>hide</button>
           <Tooltip placement="top" title='Undone'>
-            <button className='doneButton' onClick={handleDone}><img className='icons' src={require('../Icons/xIcon.png')} /></button>
+            <button id={props.doneButtonId} className='doneButton' onClick={handleDone}><img className='icons' src={require('../Icons/xIcon.png')} /></button>
           </Tooltip>
           <h3>{item.title}</h3>
           <ReadMore content={item.content} maxChar='400' />
