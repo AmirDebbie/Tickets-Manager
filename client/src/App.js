@@ -18,7 +18,7 @@ function App() {
 
   const handleInputChange = async (e) => {
     const queryText = encodeURIComponent(e.target.value)
-    const { data } = await axios.get(`api/tickets/?searchText=${queryText}`)
+    const { data } = await axios.get(`api/tickets?searchText=${queryText}`)
     setList(data);
   }
   const raiseCounter = () => {
