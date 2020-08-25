@@ -59,7 +59,7 @@ export default function MyModal(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2>Add nee Ticket</h2>
+      <h2 style={{textAlign: 'center'}}>Add New Ticket</h2>
       <form onSubmit={handleSubmit}>
           <TextField 
             style={{width: 400}} 

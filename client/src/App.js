@@ -9,24 +9,30 @@ function App() {
   const [list, setList] = useState([]);
   const [hiddenCounter, setHiddenCounter] = useState(0);
 
+  // Fetch the json list from the server and push it into the state.
   const fetch = async () => {
     const { data } = await axios.get('api/tickets');
     setList(data);
   } 
 
+  // Fetch the data on load.
   useEffect(() => {
     fetch();
   }, []);
-
+  
+  // Function that takes a searched value and sends a get request with that value as a search query.
   const handleInputChange = async (e) => {
     const queryText = encodeURIComponent(e.target.value)
     const { data } = await axios.get(`api/tickets?searchText=${queryText}`)
     setList(data);
   }
+
+  // Raises the hidden tickets counter + 1
   const raiseCounter = () => {
     setHiddenCounter(hiddenCounter + 1);
   }
-
+  
+   // Resets the hidden ticket counter to 0.
   const restoreHidden = () => {
     setHiddenCounter(0);
   }

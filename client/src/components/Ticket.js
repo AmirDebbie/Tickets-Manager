@@ -9,15 +9,18 @@ function Ticket(props) {
   const [showTicket, setShowTicket] = useState('ticket');
   const [showHideButton, setShowHideButton] = useState(false);
 
+  // Function that changes the class of a ticket when hide button is clicked. Also raises the counter for hidden tickets.
   const handleHide = (e) => {
     setShowTicket('hideTicket'); 
     props.raiseCounter();
   }
-
+  
+  // Function that changes the visibility of the hide button. 
   const handleShowHideButton = () => {
     setShowHideButton(!showHideButton);
   }
 
+  // Changes the is done value and also send the proper post request to change the done property in the json file.
   const handleDone = async () => {
     if (item.done === undefined || item.done === false) {
       const { data } = await axios.post(`/api/tickets/${item.id}/done`)
@@ -33,6 +36,7 @@ function Ticket(props) {
     props.fetch();
   }
 
+  // Checks if the hidden tickets counter was reseted every time it changes. If reset, the list turns back to not hidden.
   useEffect(() => {
     if(props.hiddenCounter === 0) {
       setShowTicket('ticket');

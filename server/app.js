@@ -47,7 +47,7 @@ app.post('/api/tickets/:ticketId/undone', async (req, res) => {
   res.send({ updated: true });
 });
 
-app.post('/api/tickets/', async (req, res) => {
+app.post('/api/tickets', async (req, res) => {
   const data = await fs.readFile(jsonFile, { encoding: 'utf-8' });
   const parsedData = JSON.parse(data);
   parsedData.push(req.body);
