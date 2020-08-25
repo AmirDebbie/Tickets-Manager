@@ -29,6 +29,10 @@ main {
     background-color: rgb(73, 156, 235, 0.1);
 }
 
+.hideTicketButton:focus {
+    outline: none;
+}
+
 .hide {
     border: none;
     background-color: inherit;
@@ -63,6 +67,10 @@ h3, h1 {
 
 .label:hover {
     transform: scale(1.1);
+}
+
+.icons {
+    height: 30px;
 }
 
 .title {
@@ -102,4 +110,18 @@ h3, h1 {
 
 .moreLess:hover {
     background-color: rgb(73, 156, 235, 0.1);
+}
+
+.doneButton {
+    border: none;
+    background-color: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 100ms;
+    padding: 0;
+    margin: 0;
+}
+
+.doneButton:focus {
+    outline: none;
 }

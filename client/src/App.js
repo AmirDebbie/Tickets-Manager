@@ -8,11 +8,12 @@ function App() {
   const [list, setList] = useState([]);
   const [hiddenCounter, setHiddenCounter] = useState(0);
 
+  const fetch = async () => {
+    const { data } = await axios.get('api/tickets');
+    setList(data);
+  } 
+
   useEffect(() => {
-    const fetch = async () => {
-      const { data } = await axios.get('api/tickets');
-      setList(data);
-    }
     fetch();
   }, []);
 
@@ -33,17 +34,26 @@ function App() {
     <main>
       <h1 className='title'>Ticket Manager</h1>
       <div className='center'>
-        <TextField className='textArea' variant="outlined" label='Search ticket by title' id='searchInput' onChange={handleInputChange} /> <br />
-        <span>showing {list.length} results. </span>
+        <TextField 
+          style={{margin: 10}} 
+          size='small' 
+          className='textArea' 
+          variant="outlined" 
+          label='Search ticket by title' 
+          id='searchInput' 
+          onChange={handleInputChange} 
+        /> <br />
+        <span>showing {list.length} results </span>
         {
           hiddenCounter > 0 &&
           <span>
-            <span id='hideTicketsCounter'>{hiddenCounter}</span> hidden tickets. <button onClick={restoreHidden} id='restoreHideTickets'>restore</button>
+            {'('}<span id='hideTicketsCounter'>{hiddenCounter}</span> hidden tickets - <button className="moreLess" onClick={restoreHidden} id='restoreHideTickets'>restore</button>{')'}
           </span>
         }
       </div>
       {list.map((item, i) => 
       <Ticket 
+        fetch={fetch}
         raiseCounter={raiseCounter} 
         key={i} 
         item={item} 
@@ -52,7 +62,5 @@ function App() {
     </main>
   );
 }
-
-
 
 export default App;
