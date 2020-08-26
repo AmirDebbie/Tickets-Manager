@@ -9,7 +9,7 @@
       "Corvid",
       "Api"
     ],
-    "done": true
+    "done": false
   },
   {
     "id": "36043e94-6d21-5d2a-b1eb-f983996e3d79",
@@ -40,7 +40,8 @@
     "title": "How to Display Numbers with a Comma Separator",
     "content": "Hey Guys, \n\nStruggling with understanding how to get my code to display commas. While I know its been attempted to be answered before my situation is a bit unique I think. \n\nIn my my database I have both text and numbers (different columns). The numbers are inputted as 0000.00, but displayed with a comma within the database. When I tried to use this code: \n \n$w.onReady(function () {\n\n  $w(\"#dataset1\").onReady(() => {\n var number = Number($w(\"#table1\").text);\n    $w(\"#totalDealValue\").text = number.toLocaleString();\n\n  });\n\n});\n\nIt stated \"text does not exist for table1\" and \"totalDealValue is not a valid selector\"\n\nI'm not sure how to select a particular column within the dataset to display the information within the column with a comma. \n\nany help would be appreciated. Still learning to code!\n\nBest,\nGabe",
     "userEmail": "co@ac.na",
-    "creationTime": 1514870853599
+    "creationTime": 1514870853599,
+    "done": false
   },
   {
     "id": "b52ad1dc-937b-54c3-81e9-2d433dd96bf6",
@@ -1423,20 +1424,15 @@
     "creationTime": 1535854919274
   },
   {
-    "id": "2cd3e054-c41e-41ee-be22-c4183470fa73",
-    "title": "Test",
-    "content": "Test",
-    "userEmail": "Test",
-    "creationTime": 1598463828951,
+    "id": "b4ae7db4-7972-4520-9e49-f39ec4db40a3",
+    "title": "aaa",
+    "content": "aaa",
+    "userEmail": "aaa",
+    "creationTime": 1598465978708,
     "labels": [
-      "Test"
+      "aaa",
+      "aaa",
+      "aaa"
     ]
-  },
-  {
-    "id": "1111-1111-111-111",
-    "title": "Test",
-    "content": "Test",
-    "userEmail": "Test",
-    "creationTime": 1525545111161
   }
 ]

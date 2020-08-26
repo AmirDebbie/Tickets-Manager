@@ -53,6 +53,7 @@ app.post('/api/tickets/:ticketId/undone', async (req, res) => {
   res.send({ updated });
 });
 
+// posts a new ticket in the json file.
 app.post('/api/tickets', async (req, res) => {
   const data = await fs.readFile(jsonFile, { encoding: 'utf-8' });
   const parsedData = JSON.parse(data);
@@ -61,6 +62,7 @@ app.post('/api/tickets', async (req, res) => {
   res.send(parsedData[parsedData.length - 1]);
 });
 
+// Serves the app from backend
 app.get('/', async (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
