@@ -66,30 +66,35 @@ export default function MyModal(props) {
             label='Enter Title' 
             required={true}
             onChange={(e) => setTitle(e.target.value)}
+            id='title'
           /><br />
           <TextField 
             style={{width: 400}} 
             label='Enter Content' multiline 
             required={true} 
             onChange={(e) => setContent(e.target.value)}
+            id='content'
           /><br />
           <TextField 
             style={{width: 400}} 
             label='Enter Email' 
             required={true}
             onChange={(e) => setUserEmail(e.target.value)}
+            id='email'
           /><br />
           <TextField 
             style={{width: 400}} 
             label='Enter Labels'
             placeholder='label,label,label' 
             onChange={(e) => setLabels((e.target.value).split(','))}
+            id='labels'
           />
           <Button 
             style={{margin: 10}} 
             variant='contained' 
             color='primary' 
             type='submit'
+            id='submit'
           >Submit</Button>
       </form>
     </div>
@@ -102,6 +107,7 @@ export default function MyModal(props) {
         style={{margin: 10}}
         variant='contained' 
         color='secondary' 
+        id='modalBtn'
       >Add New Ticket</Button>
       <Modal
         open={open}
