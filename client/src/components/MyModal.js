@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyModal(props) {
+function MyModal(props) {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -34,15 +34,18 @@ export default function MyModal(props) {
   const [content, setContent] = useState();
   const [userEmail, setUserEmail] = useState();
   const [labels, setLabels] = useState();
-
+  
+  // Opens the modal
   const handleOpen = () => {
     setOpen(true);
   };
 
+  // Closes the modal.
   const handleClose = () => {
     setOpen(false);
   };
 
+  // takes all states (inputs) and sends them to the server. after that it closes the modal and fetches the updated json file.
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { data } = await axios.post("api/tickets", {
@@ -56,7 +59,8 @@ export default function MyModal(props) {
     props.fetch();
     handleClose();
   };
-
+  
+  // Modal JSX
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h2 style={{ textAlign: "center" }}>Add New Ticket</h2>
@@ -123,3 +127,5 @@ export default function MyModal(props) {
     </div>
   );
 }
+
+export default MyModal;

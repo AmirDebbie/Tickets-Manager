@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 function ReadMore({ content, maxChar }) {
   const [isSliced, setIsSliced] = useState(true);
+
+  // Checks if the content is shorter than the maximum chars allowed.
   useEffect(() => {
     if (content.length <= maxChar) {
       setIsSliced(false);
