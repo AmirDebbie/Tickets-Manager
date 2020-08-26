@@ -1,82 +1,118 @@
-import React, { useState, useEffect } from 'react';
-import ReadMore from './ReadMore';
-import axios from 'axios';
-import { Tooltip } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
+import ReadMore from "./ReadMore";
+import axios from "axios";
+import { Tooltip } from "@material-ui/core";
 
 function Ticket(props) {
   const { item } = props;
   const [isDone, setIsDone] = useState(item.done);
-  const [showTicket, setShowTicket] = useState('ticket');
+  const [showTicket, setShowTicket] = useState("ticket");
   const [showHideButton, setShowHideButton] = useState(false);
 
   // Function that changes the class of a ticket when hide button is clicked. Also raises the counter for hidden tickets.
   const handleHide = (e) => {
-    setShowTicket('hideTicket'); 
+    setShowTicket("hideTicket");
     props.raiseCounter();
-  }
-  
-  // Function that changes the visibility of the hide button. 
+  };
+
+  // Function that changes the visibility of the hide button.
   const handleShowHideButton = () => {
     setShowHideButton(!showHideButton);
-  }
+  };
 
   // Changes the is done value and also send the proper post request to change the done property in the json file.
   const handleDone = async () => {
     if (item.done === undefined || item.done === false) {
-      const { data } = await axios.post(`/api/tickets/${item.id}/done`)
+      const { data } = await axios.post(`/api/tickets/${item.id}/done`);
       if (data.updated) {
         setIsDone(true);
       }
     } else {
-      const { data } = await axios.post(`/api/tickets/${item.id}/undone`)
+      const { data } = await axios.post(`/api/tickets/${item.id}/undone`);
       if (data.updated) {
         setIsDone(false);
       }
     }
     props.fetch();
-  }
+  };
 
   // Checks if the hidden tickets counter was reseted every time it changes. If reset, the list turns back to not hidden.
   useEffect(() => {
-    if(props.hiddenCounter === 0) {
-      setShowTicket('ticket');
+    if (props.hiddenCounter === 0) {
+      setShowTicket("ticket");
     }
-  }, [props.hiddenCounter])
-  
+  }, [props.hiddenCounter]);
+
   return (
-      <div onMouseOver={handleShowHideButton} onMouseOut={handleShowHideButton} className={showTicket}>
-        {isDone ? 
-          <>
-            <button className={showHideButton ? 'hideTicketButton' : 'hide'} onClick={handleHide}>hide</button>
-            <Tooltip placement="top" title='Done'>
-              <button id={props.doneButtonId} className='doneButton' onClick={handleDone}><img className='icons' src={require('../Icons/vIcon.png')} /></button>
-            </Tooltip>
-            <h3>{item.title}</h3>
-            <div>
-              <p className='emailAndDate'>By {item.userEmail} | {new Date(item.creationTime).toString()}</p>
-              {item.labels &&
-                item.labels.map((label, i) => <span key={i} className='label'>{label}</span>)
-              }
-            </div>
-          </>
-        :
+    <div
+      onMouseOver={handleShowHideButton}
+      onMouseOut={handleShowHideButton}
+      className={showTicket}
+    >
+      {isDone ? (
         <>
-          <button className={showHideButton ? 'hideTicketButton' : 'hide'} onClick={handleHide}>hide</button>
-          <Tooltip placement="top" title='Undone'>
-            <button id={props.doneButtonId} className='doneButton' onClick={handleDone}><img className='icons' src={require('../Icons/xIcon.png')} /></button>
+          <button
+            className={showHideButton ? "hideTicketButton" : "hide"}
+            onClick={handleHide}
+          >
+            hide
+          </button>
+          <Tooltip placement="top" title="Done">
+            <button
+              id={props.doneButtonId}
+              className="doneButton"
+              onClick={handleDone}
+            >
+              <img className="icons" src={require("../Icons/vIcon.png")} />
+            </button>
           </Tooltip>
           <h3>{item.title}</h3>
-          <ReadMore content={item.content} maxChar='400' />
           <div>
-            <p className='emailAndDate'>By {item.userEmail} | {new Date(item.creationTime).toString()}</p>
+            <p className="emailAndDate">
+              By {item.userEmail} | {new Date(item.creationTime).toString()}
+            </p>
             {item.labels &&
-              item.labels.map((label, i) => <span key={i} className='label'>{label}</span>)
-            }
+              item.labels.map((label, i) => (
+                <span key={i} className="label">
+                  {label}
+                </span>
+              ))}
           </div>
         </>
-        }
-      </div>
-  )
+      ) : (
+        <>
+          <button
+            className={showHideButton ? "hideTicketButton" : "hide"}
+            onClick={handleHide}
+          >
+            hide
+          </button>
+          <Tooltip placement="top" title="Undone">
+            <button
+              id={props.doneButtonId}
+              className="doneButton"
+              onClick={handleDone}
+            >
+              <img className="icons" src={require("../Icons/xIcon.png")} />
+            </button>
+          </Tooltip>
+          <h3>{item.title}</h3>
+          <ReadMore content={item.content} maxChar="400" />
+          <div>
+            <p className="emailAndDate">
+              By {item.userEmail} | {new Date(item.creationTime).toString()}
+            </p>
+            {item.labels &&
+              item.labels.map((label, i) => (
+                <span key={i} className="label">
+                  {label}
+                </span>
+              ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
 
 export default Ticket;

@@ -1,8 +1,8 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
 
-describe('App Test', () => {
-    test('Test if done button changes json file', async () => {
+describe('My Tests', () => {
+    test('Test if done button changes json file (Will work only if the server is running!!!)', async () => {
         const data = await fs.readFile('../server/data.json')
         const parsedData = JSON.parse(data);
         let browser = await puppeteer.launch({
@@ -20,7 +20,7 @@ describe('App Test', () => {
 
         browser.close();
     }, 20000)
-    test('tests if the add ticket form adds a ticket to the json file', async () => {
+    test('tests if the add ticket form adds a ticket to the json file (Will work only if the server is running!!!)', async () => {
         const data = await fs.readFile('../server/data.json')
         const parsedData = JSON.parse(data);
         let browser = await puppeteer.launch({

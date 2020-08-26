@@ -1,11 +1,13 @@
 const express = require('express');
 const fs = require('fs').promises;
+const path = require('path');
 
 const jsonFile = './data.json';
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 // returns the json array from the data file. if query param "searchText" exits, it returns a filtered array of the items titles.
 app.get('/api/tickets', async (req, res) => {
@@ -57,6 +59,10 @@ app.post('/api/tickets', async (req, res) => {
   parsedData.push(req.body);
   await fs.writeFile(jsonFile, JSON.stringify(parsedData, null, 2));
   res.send(parsedData[parsedData.length - 1]);
+});
+
+app.get('/', async (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
 module.exports = app;
