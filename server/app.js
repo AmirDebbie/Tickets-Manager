@@ -23,28 +23,32 @@ app.get('/api/tickets', async (req, res) => {
 app.post('/api/tickets/:ticketId/done', async (req, res) => {
   const data = await fs.readFile(jsonFile, { encoding: 'utf-8' });
   const parsedData = JSON.parse(data);
+  let updated = false;
   parsedData.forEach((item, i) => {
     if (item.id === req.params.ticketId) {
       parsedData[i].done = true;
+      updated = true;
     }
   });
 
   fs.writeFile(jsonFile, JSON.stringify(parsedData));
 
-  res.send({ updated: true });
+  res.send({ updated });
 });
 
 // gets an id in the params and gives/changes the done property of that item to false.
 app.post('/api/tickets/:ticketId/undone', async (req, res) => {
   const data = await fs.readFile(jsonFile, { encoding: 'utf-8' });
   const parsedData = JSON.parse(data);
+  let updated = false;
   parsedData.forEach((item, i) => {
     if (item.id === req.params.ticketId) {
       parsedData[i].done = false;
+      updated = true;
     }
   });
   fs.writeFile(jsonFile, JSON.stringify(parsedData, null, 2));
-  res.send({ updated: true });
+  res.send({ updated });
 });
 
 app.post('/api/tickets', async (req, res) => {
