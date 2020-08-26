@@ -10,7 +10,7 @@ function Ticket(props) {
   const [showHideButton, setShowHideButton] = useState(false);
 
   // Function that changes the class of a ticket when hide button is clicked. Also raises the counter for hidden tickets.
-  const handleHide = (e) => {
+  const handleHide = () => {
     setShowTicket('hideTicket');
     props.raiseCounter();
   };
@@ -63,7 +63,7 @@ function Ticket(props) {
               className="doneButton"
               onClick={handleDone}
             >
-              <img className="icons" src={require('../Icons/vIcon.png')} />
+              <img alt='Undone' className="icons" src={require('../Icons/vIcon.png')} />
             </button>
           </Tooltip>
           <h3>{item.title}</h3>
@@ -93,7 +93,7 @@ function Ticket(props) {
               className="doneButton"
               onClick={handleDone}
             >
-              <img className="icons" src={require('../Icons/xIcon.png')} />
+              <img alt='done' className="icons" src={require('../Icons/xIcon.png')} />
             </button>
           </Tooltip>
           <h3>{item.title}</h3>

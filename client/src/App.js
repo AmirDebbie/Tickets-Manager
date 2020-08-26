@@ -76,7 +76,7 @@ function App() {
         <Ticket
           fetch={fetch}
           raiseCounter={raiseCounter}
-          key={i}
+          key={item.id}
           item={item}
           doneButtonId={`doneButton-${i}`}
           hiddenCounter={hiddenCounter}
