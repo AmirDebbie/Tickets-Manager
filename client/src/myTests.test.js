@@ -14,12 +14,13 @@ describe('My Tests', () => {
         await page.waitForSelector('#doneButton-0', {visible: true});
         const button = await page.$('#doneButton-0');
         await button.click();
+        await timeout(2000); // Important to make sure the server had enough time to update properly.
         const updatedData = await fs.readFile('../server/data.json')
         const parsedUpdatedData = JSON.parse(updatedData);
         expect(parsedUpdatedData[0].done).toBe(!parsedData[0].done)
 
         browser.close();
-    }, 20000)
+    }, 30000)
     test('tests if the add ticket form adds a ticket to the json file (Will work only if the server is running!!!)', async () => {
         const data = await fs.readFile('../server/data.json')
         const parsedData = JSON.parse(data);
@@ -39,6 +40,7 @@ describe('My Tests', () => {
         await page.type('#labels', 'Test');
         const submitBtn = await page.$('#submit');
         await submitBtn.click();
+        await timeout(2000); // Important to make sure the server had enough time to update properly.
 
         const updatedData = await fs.readFile('../server/data.json')
         const parsedUpdatedData = JSON.parse(updatedData);
@@ -51,5 +53,9 @@ describe('My Tests', () => {
         expect(lastItem.labels[0]).toBe('Test');
 
         browser.close();
-    }, 25000)
+    }, 30000)
 })
+
+function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

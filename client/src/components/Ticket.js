@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import ReadMore from "./ReadMore";
-import axios from "axios";
-import { Tooltip } from "@material-ui/core";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Tooltip } from '@material-ui/core';
+import ReadMore from './ReadMore';
 
 function Ticket(props) {
   const { item } = props;
   const [isDone, setIsDone] = useState(item.done);
-  const [showTicket, setShowTicket] = useState("ticket");
+  const [showTicket, setShowTicket] = useState('ticket');
   const [showHideButton, setShowHideButton] = useState(false);
 
   // Function that changes the class of a ticket when hide button is clicked. Also raises the counter for hidden tickets.
   const handleHide = (e) => {
-    setShowTicket("hideTicket");
+    setShowTicket('hideTicket');
     props.raiseCounter();
   };
 
@@ -39,7 +39,7 @@ function Ticket(props) {
   // Checks if the hidden tickets counter was reseted every time it changes. If reset, the list turns back to not hidden.
   useEffect(() => {
     if (props.hiddenCounter === 0) {
-      setShowTicket("ticket");
+      setShowTicket('ticket');
     }
   }, [props.hiddenCounter]);
 
@@ -52,7 +52,7 @@ function Ticket(props) {
       {isDone ? (
         <>
           <button
-            className={showHideButton ? "hideTicketButton" : "hide"}
+            className={showHideButton ? 'hideTicketButton' : 'hide'}
             onClick={handleHide}
           >
             hide
@@ -63,16 +63,16 @@ function Ticket(props) {
               className="doneButton"
               onClick={handleDone}
             >
-              <img className="icons" src={require("../Icons/vIcon.png")} />
+              <img className="icons" src={require('../Icons/vIcon.png')} />
             </button>
           </Tooltip>
           <h3>{item.title}</h3>
           <div>
             <p className="emailAndDate">
-              By {item.userEmail} | {new Date(item.creationTime).toString()}
+              {`By ${item.userEmail} | ${new Date(item.creationTime).toString()}`}
             </p>
-            {item.labels &&
-              item.labels.map((label, i) => (
+            {item.labels
+              && item.labels.map((label, i) => (
                 <span key={i} className="label">
                   {label}
                 </span>
@@ -82,7 +82,7 @@ function Ticket(props) {
       ) : (
         <>
           <button
-            className={showHideButton ? "hideTicketButton" : "hide"}
+            className={showHideButton ? 'hideTicketButton' : 'hide'}
             onClick={handleHide}
           >
             hide
@@ -93,17 +93,17 @@ function Ticket(props) {
               className="doneButton"
               onClick={handleDone}
             >
-              <img className="icons" src={require("../Icons/xIcon.png")} />
+              <img className="icons" src={require('../Icons/xIcon.png')} />
             </button>
           </Tooltip>
           <h3>{item.title}</h3>
           <ReadMore content={item.content} maxChar="400" />
           <div>
             <p className="emailAndDate">
-              By {item.userEmail} | {new Date(item.creationTime).toString()}
+              {`By ${item.userEmail} | ${new Date(item.creationTime).toString()}`}
             </p>
-            {item.labels &&
-              item.labels.map((label, i) => (
+            {item.labels
+              && item.labels.map((label, i) => (
                 <span key={i} className="label">
                   {label}
                 </span>

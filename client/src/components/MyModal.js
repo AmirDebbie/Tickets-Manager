@@ -88,9 +88,9 @@ export default function MyModal(props) {
         <br />
         <TextField
           style={{ width: 400 }}
-          label="Enter Labels"
-          placeholder="label,label,label"
-          onChange={(e) => setLabels(e.target.value.split(","))}
+          label="Enter Labels (label, label, label)"
+          placeholder="label, label, label"
+          onChange={(e) => setLabels(e.target.value.split(", "))}
           id="labels"
         />
         <Button

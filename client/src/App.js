@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Ticket from "./components/Ticket";
-import TextField from "@material-ui/core/TextField";
-import "./App.css";
-import MyModal from "./components/MyModal";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
+import Ticket from './components/Ticket';
+import './App.css';
+import MyModal from './components/MyModal';
 
 function App() {
   const [list, setList] = useState([]);
@@ -11,7 +11,7 @@ function App() {
 
   // Fetch the json list from the server and push it into the state.
   const fetch = async () => {
-    const { data } = await axios.get("api/tickets");
+    const { data } = await axios.get('api/tickets');
     setList(data);
   };
 
@@ -42,7 +42,7 @@ function App() {
       <h1 className="title">Ticket Manager</h1>
       <div className="center">
         <TextField
-          style={{ margin: 10, boxShadow: "5px 5px 18px #9e9797" }}
+          style={{ margin: 10, boxShadow: '5px 5px 18px #9e9797' }}
           size="small"
           className="textArea"
           variant="outlined"
@@ -51,12 +51,14 @@ function App() {
           onChange={handleInputChange}
         />
         <br />
-        <span>showing {list.length} results </span>
+        <span>
+          {`Showing ${list.length} results `}
+        </span>
         {hiddenCounter > 0 && (
           <span>
-            {"("}
-            <span id="hideTicketsCounter">{hiddenCounter}</span> hidden tickets
-            -{" "}
+            (
+            <span id="hideTicketsCounter">{hiddenCounter}</span>
+            {' hidden tickets - '}
             <button
               className="moreLess"
               onClick={restoreHidden}
@@ -64,7 +66,7 @@ function App() {
             >
               restore
             </button>
-            {")"}
+            )
           </span>
         )}
         <br />
