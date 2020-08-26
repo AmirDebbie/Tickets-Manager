@@ -1,6 +1,5 @@
 const request = require('supertest');
 const app = require('./app');
-const fs = require('fs').promises;
 
 describe('My Test', () => {
   it('the server should be able to add tickets to the json file', async () => {
