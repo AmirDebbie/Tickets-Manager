@@ -59,7 +59,7 @@ app.post('/api/tickets', async (req, res) => {
   const parsedData = JSON.parse(data);
   parsedData.push(req.body);
   await fs.writeFile(jsonFile, JSON.stringify(parsedData, null, 2));
-  res.send(parsedData[parsedData.length - 1]);
+  res.send(parsedData);
 });
 
 // Serves the app from backend

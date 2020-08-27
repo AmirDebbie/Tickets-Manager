@@ -56,7 +56,7 @@ function MyModal(props) {
       creationTime: new Date().getTime(),
       labels,
     });
-    props.fetch();
+    props.setList(data);
     handleClose();
   };
   

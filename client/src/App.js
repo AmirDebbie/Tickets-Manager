@@ -70,7 +70,7 @@ function App() {
           </span>
         )}
         <br />
-        <MyModal fetch={fetch} />
+        <MyModal fetch={fetch} setList={setList} />
       </div>
       {list.map((item, i) => (
         <Ticket
