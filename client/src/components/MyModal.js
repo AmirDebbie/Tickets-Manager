@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 function MyModal(props) {
   const classes = useStyles();
-  const [modalStyle] = useState(getModalStyle);
+  const modalStyle = getModalStyle();
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState();
   const [content, setContent] = useState();

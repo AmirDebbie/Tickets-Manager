@@ -42,7 +42,7 @@ describe('My Tests', () => {
     page = await browser.newPage();
     useNock(page, ['http://localhost:3000/api']);
   });
-  test('Test if done button changes json file', async () => {
+  test('Tests user can mark ticket as done', async () => {
     const getAllTicketsMock = await nock('http://localhost:3000/', { allowUnmocked: true })
       .get('/api/tickets')
       .query(() => true)
