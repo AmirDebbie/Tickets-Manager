@@ -20,7 +20,7 @@ function Ticket(props) {
 
   // Changes the is done value and also send the proper post request to change the done property in the json file.
   const handleDone = async () => {
-    if (item.done === undefined || item.done === false) {
+    if (isDone === undefined || isDone === false) {
       const { data } = await axios.post(`/api/tickets/${item.id}/done`);
       if (data.updated) {
         setIsDone(true);
@@ -31,7 +31,6 @@ function Ticket(props) {
         setIsDone(false);
       }
     }
-    props.fetch();
   };
 
   return (

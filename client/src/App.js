@@ -97,7 +97,6 @@ function App() {
       {visibleList.map((item, i) => (
         <Ticket
           onHide={onHideTicket}
-          fetch={fetch}
           key={item.id}
           item={item}
           doneButtonId={`doneButton-${i}`}
