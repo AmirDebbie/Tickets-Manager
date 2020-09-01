@@ -7,7 +7,9 @@ import MyModal from './components/MyModal';
 
 function App() {
   const [list, setList] = useState([]);
-  const [hiddenCounter, setHiddenCounter] = useState(0);
+  const [hiddenIds, setHiddenIds] = useState([]);
+  const visibleList = list.filter(item => !item.hidden);
+  const hiddenTicketsLength = list.length - visibleList.length;
 
   // Fetch the json list from the server and push it into the state.
   const fetch = async () => {
@@ -21,22 +23,42 @@ function App() {
   }, []);
 
   // Function that takes a searched value and sends a get request with that value as a search query.
+  // Also converts all hidden tickets to hidden in the new data.
   const handleInputChange = async (e) => {
     const queryText = encodeURIComponent(e.target.value);
     const { data } = await axios.get(`api/tickets?searchText=${queryText}`);
+    data.map(item => {
+      if (hiddenIds.some(hiddenId => hiddenId === item.id)) {
+        item.hidden = true;
+      }
+      return item;
+    })
     setList(data);
   };
 
-  // Raises the hidden tickets counter + 1
-  const raiseCounter = () => {
-    setHiddenCounter(hiddenCounter + 1);
-  };
+  const onHideTicket = ticketId => {
+    setList(list.map(item => {
+      if (item.id === ticketId) {
+        item.hidden = true;
+      }
+      return item;
+    }))
+    setHiddenIds(hiddenIds.concat(ticketId));
+  }
 
-  // Resets the hidden ticket counter to 0.
+  // Changes the hidden prop of any ticket in the list to false. Also updates the hiddenIds list.
   const restoreHidden = () => {
-    setHiddenCounter(0);
+    let hiddenIdsClone = hiddenIds.slice();
+    setList(list.map(item => {
+      if (item.hidden) {
+        item.hidden = false;
+        hiddenIdsClone = hiddenIdsClone.filter(id => item.id !== id);
+      }
+      return item;
+    }))
+    setHiddenIds(hiddenIdsClone);
   };
-
+  
   return (
     <main>
       <h1 className="title">Ticket Manager</h1>
@@ -54,10 +76,10 @@ function App() {
         <span>
           {`Showing ${list.length} results `}
         </span>
-        {hiddenCounter > 0 && (
+        {hiddenTicketsLength > 0 && (
           <span>
             (
-            <span id="hideTicketsCounter">{hiddenCounter}</span>
+            <span id="hideTicketsCounter">{hiddenTicketsLength}</span>
             {' hidden tickets - '}
             <button
               className="moreLess"
@@ -72,14 +94,13 @@ function App() {
         <br />
         <MyModal fetch={fetch} setList={setList} />
       </div>
-      {list.map((item, i) => (
+      {visibleList.map((item, i) => (
         <Ticket
+          onHide={onHideTicket}
           fetch={fetch}
-          raiseCounter={raiseCounter}
           key={item.id}
           item={item}
           doneButtonId={`doneButton-${i}`}
-          hiddenCounter={hiddenCounter}
         />
       ))}
     </main>

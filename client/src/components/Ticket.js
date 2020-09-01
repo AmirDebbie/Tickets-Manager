@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Tooltip } from '@material-ui/core';
 import ReadMore from './ReadMore';
@@ -6,13 +6,11 @@ import ReadMore from './ReadMore';
 function Ticket(props) {
   const { item } = props;
   const [isDone, setIsDone] = useState(item.done);
-  const [showTicket, setShowTicket] = useState('ticket');
   const [showHideButton, setShowHideButton] = useState(false);
 
-  // Function that changes the class of a ticket when hide button is clicked. Also raises the counter for hidden tickets.
+  // activates the onHide method from the App component.
   const handleHide = () => {
-    setShowTicket('hideTicket');
-    props.raiseCounter();
+    props.onHide(item.id);
   };
 
   // Function that changes the visibility of the hide button.
@@ -36,18 +34,11 @@ function Ticket(props) {
     props.fetch();
   };
 
-  // Checks if the hidden tickets counter was reseted every time it changes. If reset, the list turns back to not hidden.
-  useEffect(() => {
-    if (props.hiddenCounter === 0) {
-      setShowTicket('ticket');
-    }
-  }, [props.hiddenCounter]);
-
   return (
     <div
       onMouseOver={handleShowHideButton}
       onMouseOut={handleShowHideButton}
-      className={showTicket}
+      className='ticket'
     >
       {isDone ? (
         <>
@@ -97,7 +88,7 @@ function Ticket(props) {
             </button>
           </Tooltip>
           <h3>{item.title}</h3>
-          <ReadMore content={item.content} maxChar="400" />
+          <ReadMore content={item.content} maxChar="450" />
           <div>
             <p className="emailAndDate">
               {`By ${item.userEmail} | ${new Date(item.creationTime).toString()}`}
