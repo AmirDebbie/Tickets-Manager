@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Ticket from './components/Ticket';
@@ -18,7 +18,6 @@ function App() {
     
     setList(data.map(item => {
       if (hiddenIds.some(hiddenId => hiddenId === item.id)) {
-        debugger
         item.hidden = true;
       }
       return item;
@@ -66,12 +65,15 @@ function App() {
     }))
     setHiddenIds(hiddenIdsClone);
   };
+
+  const inputRef = useRef();
   
   return (
     <main>
       <h1 className="title">Ticket Manager</h1>
       <div className="center">
         <TextField
+          ref={inputRef}
           style={{ margin: 10, boxShadow: '5px 5px 18px #9e9797' }}
           size="small"
           className="textArea"
@@ -100,7 +102,7 @@ function App() {
           </span>
         )}
         <br />
-        <MyModal fetch={fetch} setList={setList} />
+        <MyModal inputRef={inputRef} fetch={fetch} setList={setList} />
       </div>
       {visibleList.map((item, i) => (
         <Ticket

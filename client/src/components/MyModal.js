@@ -56,8 +56,9 @@ function MyModal(props) {
       creationTime: new Date().getTime(),
       labels,
     });
-    props.setList(data);
+    //props.setList(data);
     props.fetch();
+    props.inputRef.current.childNodes[1].firstChild.value = ""
     handleClose();
   };
   
