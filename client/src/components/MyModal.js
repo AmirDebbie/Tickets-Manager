@@ -57,6 +57,7 @@ function MyModal(props) {
       labels,
     });
     props.setList(data);
+    props.fetch();
     handleClose();
   };
   

@@ -13,8 +13,16 @@ function App() {
 
   // Fetch the json list from the server and push it into the state.
   const fetch = async () => {
+    
     const { data } = await axios.get('api/tickets');
-    setList(data);
+    
+    setList(data.map(item => {
+      if (hiddenIds.some(hiddenId => hiddenId === item.id)) {
+        debugger
+        item.hidden = true;
+      }
+      return item;
+    }));
   };
 
   // Fetch the data on load.
@@ -27,13 +35,13 @@ function App() {
   const handleInputChange = async (e) => {
     const queryText = encodeURIComponent(e.target.value);
     const { data } = await axios.get(`api/tickets?searchText=${queryText}`);
-    data.map(item => {
+    
+    setList(data.map(item => {
       if (hiddenIds.some(hiddenId => hiddenId === item.id)) {
         item.hidden = true;
       }
       return item;
-    })
-    setList(data);
+    }));
   };
 
   const onHideTicket = ticketId => {
