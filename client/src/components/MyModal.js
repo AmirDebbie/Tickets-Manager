@@ -48,7 +48,7 @@ function MyModal(props) {
   // takes all states (inputs) and sends them to the server. after that it closes the modal and fetches the updated json file.
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data } = await axios.post("api/tickets", {
+    await axios.post("api/tickets", {
       id: uuidv4(),
       title,
       content,
