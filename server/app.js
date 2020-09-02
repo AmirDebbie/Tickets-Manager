@@ -32,9 +32,7 @@ app.post('/api/tickets/:ticketId/done', async (req, res) => {
       updated = true;
     }
   });
-
   fs.writeFile(jsonFile, JSON.stringify(parsedData));
-
   res.send({ updated });
 });
 
