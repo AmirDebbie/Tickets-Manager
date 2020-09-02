@@ -87,10 +87,6 @@ h3, h1 {
     border-width: 2px;
 }
 
-.hideTicket {
-    display: none;
-}
-
 .moreLess {
     border: none;
     background-color: inherit;
@@ -123,3 +119,17 @@ h3, h1 {
 .doneButton:focus {
     outline: none;
 }
+
+@media only screen and (max-width: 600px) {
+    .hide {
+        border: none;
+        background-color: inherit;
+        margin-left: 95%;
+        color: rgb(73, 156, 235);
+        font-size: 16px;
+        cursor: pointer;
+        transition: 200ms;
+        border-radius: 4px;
+        padding:5px;
+    }
+  }
