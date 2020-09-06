@@ -74,8 +74,9 @@ h3, h1 {
 .title {
     text-align: center;
     padding: 20px;
-    color: rgb(43, 130, 211);
+    color: white;
     font-size: 40px;
+    background-color: rgb(43, 130, 211);
 }
 
 .center {
