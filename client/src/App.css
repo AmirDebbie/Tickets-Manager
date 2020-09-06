@@ -40,6 +40,7 @@ main {
     font-size: 16px;
     cursor: pointer;
     padding:5px;
+    transition: 200ms;
 }
 
 h3, h1 {
@@ -61,10 +62,6 @@ h3, h1 {
     padding: 6px;
     transition: 200ms;
     box-shadow: 3px 3px 10px #c0b9b9;
-}
-
-.label:hover {
-    transform: scale(1.1);
 }
 
 .icons {
