@@ -26,7 +26,10 @@ function App() {
 
   // Fetch the data on load.
   useEffect(() => {
-    fetch();
+    (async () => {
+      const { data } = await axios.get('api/tickets');
+      setList(data);
+    })();
   }, []);
 
   // Function that takes a searched value and sends a get request with that value as a search query.
