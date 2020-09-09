@@ -96,7 +96,7 @@ function MyModal(props) {
           style={{ width: 400 }}
           label="Enter Labels (label, label, label)"
           placeholder="label, label, label"
-          onChange={(e) => setLabels(e.target.value.split(", "))}
+          onChange={(e) => setLabels([...new Set(e.target.value.split(", "))])}
           id="labels"
         />
         <Button
