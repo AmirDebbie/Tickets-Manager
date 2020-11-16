@@ -1,0 +1,133 @@
+main {
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.ticket {
+    color: rgb(80, 112, 121);
+    margin: 30px auto;
+    width: 80%;
+    box-shadow: 5px 10px 18px #9e9797;
+    padding: 30px;
+    padding-top:14px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.hideTicketButton {
+    border: none;
+    background-color: inherit;
+    margin-left: 95%;
+    color: rgb(73, 156, 235);
+    font-size: 16px;
+    cursor: pointer;
+    transition: 200ms;
+    border-radius: 4px;
+    padding:5px;
+}
+.hideTicketButton:hover {
+    background-color: rgb(73, 156, 235, 0.1);
+}
+
+.hideTicketButton:focus {
+    outline: none;
+}
+
+.hide {
+    border: none;
+    background-color: inherit;
+    margin-left: 96%;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding:5px;
+    transition: 200ms;
+}
+
+h3, h1 {
+    margin: 0;
+}
+
+.emailAndDate {
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.label {
+    font-size: 14px;
+    color: rgb(73, 156, 235);
+    background-color: rgb(73, 156, 235, 0.2); ;
+    border: 2px solid rgb(73, 156, 235);
+    border-radius: 5px;
+    margin: 7px;
+    padding: 6px;
+    transition: 200ms;
+    box-shadow: 3px 3px 10px #c0b9b9;
+}
+
+.icons {
+    height: 30px;
+}
+
+.title {
+    text-align: center;
+    padding: 20px;
+    color: white;
+    font-size: 40px;
+    background-color: rgb(43, 130, 211);
+}
+
+.center {
+    text-align: center;
+}
+
+.textArea {
+    background-color:white ;
+    border-width: 2px;
+}
+
+.moreLess {
+    border: none;
+    background-color: inherit;
+    color: rgb(73, 156, 235);
+    font-size: 16px;
+    cursor: pointer;
+    transition: 100ms;
+    border-radius: 4px;
+    padding:5px;
+}
+
+.moreLess:focus {
+    outline: none;
+}
+
+.moreLess:hover {
+    background-color: rgb(73, 156, 235, 0.1);
+}
+
+.doneButton {
+    border: none;
+    background-color: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 100ms;
+    padding: 0;
+    margin: 0;
+}
+
+.doneButton:focus {
+    outline: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .hide {
+        border: none;
+        background-color: inherit;
+        margin-left: 95%;
+        color: rgb(73, 156, 235);
+        font-size: 16px;
+        cursor: pointer;
+        transition: 200ms;
+        border-radius: 4px;
+        padding:5px;
+    }
+  }
