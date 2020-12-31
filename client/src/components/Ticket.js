@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Tooltip } from '@material-ui/core';
-import ReadMore from './ReadMore';
+import React, { useState } from "react";
+import axios from "axios";
+import { Tooltip } from "@material-ui/core";
+import ReadMore from "./ReadMore";
 
 function Ticket(props) {
   const { item } = props;
@@ -35,14 +35,15 @@ function Ticket(props) {
 
   return (
     <div
+      data-aos={props.left ? "fade-left" : "fade-right"}
       onMouseOver={handleShowHideButton}
       onMouseOut={handleShowHideButton}
-      className='ticket'
+      className="ticket"
     >
       {isDone ? (
         <>
           <button
-            className={showHideButton ? 'hideTicketButton' : 'hide'}
+            className={showHideButton ? "hideTicketButton" : "hide"}
             onClick={handleHide}
           >
             hide
@@ -53,16 +54,22 @@ function Ticket(props) {
               className="doneButton"
               onClick={handleDone}
             >
-              <img alt='Undone' className="icons" src={require('../Icons/vIcon.png')} />
+              <img
+                alt="Undone"
+                className="icons"
+                src={require("../Icons/vIcon.png")}
+              />
             </button>
           </Tooltip>
           <h3>{item.title}</h3>
           <div>
             <p className="emailAndDate">
-              {`By ${item.userEmail} | ${new Date(item.creationTime).toString()}`}
+              {`By ${item.userEmail} | ${new Date(
+                item.creationTime
+              ).toString()}`}
             </p>
-            {item.labels
-              && item.labels.map((label, i) => (
+            {item.labels &&
+              item.labels.map((label, i) => (
                 <span key={i} className="label">
                   {label}
                 </span>
@@ -72,7 +79,7 @@ function Ticket(props) {
       ) : (
         <>
           <button
-            className={showHideButton ? 'hideTicketButton' : 'hide'}
+            className={showHideButton ? "hideTicketButton" : "hide"}
             onClick={handleHide}
           >
             hide
@@ -83,17 +90,23 @@ function Ticket(props) {
               className="doneButton"
               onClick={handleDone}
             >
-              <img alt='done' className="icons" src={require('../Icons/xIcon.png')} />
+              <img
+                alt="done"
+                className="icons"
+                src={require("../Icons/xIcon.png")}
+              />
             </button>
           </Tooltip>
           <h3>{item.title}</h3>
           <ReadMore content={item.content} maxChar="450" />
           <div>
             <p className="emailAndDate">
-              {`By ${item.userEmail} | ${new Date(item.creationTime).toString()}`}
+              {`By ${item.userEmail} | ${new Date(
+                item.creationTime
+              ).toString()}`}
             </p>
-            {item.labels
-              && item.labels.map((label, i) => (
+            {item.labels &&
+              item.labels.map((label, i) => (
                 <span key={i} className="label">
                   {label}
                 </span>
